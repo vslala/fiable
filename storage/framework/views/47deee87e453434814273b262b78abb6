@@ -1,0 +1,64 @@
+<?php $panelHeading = "Order Summary";
+    $title = "Order Summary";
+ ?>
+
+
+<?php $__env->startSection('content'); ?>
+
+<?php echo $__env->make('_panel-heading', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+
+<div class="row">
+    <div class="col-md-10">
+                <div class="order-summary">
+                    <div class="jumbotron">
+                        <div class="h3 tahoma">Order Summary</div>
+
+                        <p>Total Amount Payable: <strong><?php echo e($totalAmount); ?></strong> <?php echo Html::image('img/home/rupee-symbol.png'); ?></p>
+
+                        <div class="address">
+                            <p>Address</p>
+                            <?php echo e($address[0]['address_one']); ?>
+
+                            <br>
+                            <?php echo e($address[0]['address_two']); ?>
+
+                            <br>
+                            <?php echo e($address[0]['landmark']); ?>
+
+                            <br>
+                            <?php echo e($state[0]['name']); ?>
+
+                            <br>
+                            <?php echo e($city[0]['name']); ?>
+
+                            <br>
+                            <?php echo e($address[0]['mobile']); ?>
+
+                            <br><br>
+
+                            <?php /*<?php echo Form::open(['route'=>['confirm'], 'method'=>'put']); ?>*/ ?>
+                                <?php /*<input type="hidden" value="<?php echo e($address[0]['userID']); ?>" name="userID">*/ ?>
+
+                            <a href="<?php echo e(route('confirm',[
+                                $address[0]['id'],
+                                $address[0]['firstName'],
+                                $address[0]['lastName'],
+                                $address[0]['email'],
+                                $totalAmount
+                            ])); ?>" class="btn btn-primary btn-lg" id="confirm">Confirm Order</a>
+
+                            <?php /*<?php echo Form::close(); ?>*/ ?>
+
+                        </div>
+
+
+                    </div>
+                </div>
+                <br>
+
+
+    </div>
+</div>
+
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('master', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

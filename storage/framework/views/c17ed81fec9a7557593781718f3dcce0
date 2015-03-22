@@ -1,0 +1,149 @@
+<?php
+$setUserHomeActive = "active";
+$title = "Photography Home";
+?>
+
+
+<?php $__env->startSection('content'); ?>
+
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-3">
+			<div class="displayImage">
+			 <!-- Image will come here -->
+			</div>
+		</div>
+		<div class="col-md-6">
+			<!-- Display information will come here -->
+		</div>
+		<div class="col-md-3"></div>
+	</div>
+
+	<div class="row">
+		<div class="col-md-3">
+		<a href="<?php if($flag): ?><?php echo e(route("userProfile")); ?> <?php else: ?> # <?php endif; ?>">
+		<?php if(count($dp) > 0): ?>
+		    <?php echo Html::image($dp['url'], $dp['name'], ['class'=>'img img-thumbnail img-responsive']); ?>
+
+
+		    <?php else: ?>
+		    <?php echo Html::image("http://vkmtrade.com/images/Default_User.png","Profile Picture",['class'=>'img img-thumbnail img-responsive']); ?>
+
+		<?php endif; ?>
+		</a>
+
+				<!-- Left nav panel will come here -->
+            <?php if($flag): ?>
+                <?php echo $__env->make("user._left-nav", array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+            <?php else: ?>
+                <a href="<?php echo e(route("photography")); ?>">
+                <span class="glyphicon glyphicon-hand-left"></span>
+                Go Back</a>
+            <?php endif; ?>
+        </div>
+
+		<div class="col-md-9">
+			<div class="container-fluid">
+			    <div class="row">
+			    <?php if($flag): ?>
+			        <div class="form-group">
+			            <a href="#addImage" class="btn btn-danger" id="addImageLink" data-toggle="modal">Add Image</a>
+
+			            <!-- Modal for image upload -->
+
+                                     		<div class="modal" id="addImage">
+                                     		    <div class="modal-dialog">
+                                     		        <div class="modal-content">
+                                     		            <div class="modal-header">
+                                     		            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                     		                <div class="modal-title">
+                                     		                    <div class="h3">
+                                     		                        Upload Picture for your Portfolio
+                                     		                    </div>
+
+                                     		                </div>
+                                     		            </div>
+
+                                     		            <div class="modal-body">
+                                     		                <?php echo Form::open(["route"=>["userImages"], "method"=>"put",
+                                     		                    "files"=>true
+                                     		                ]); ?>
+
+                                     		                    <div class="form-group">
+                                     		                        <?php echo Form::file("file", ['class'=>'form-control']); ?>
+
+                                     		                    </div>
+
+
+                                     		                    <div class="form-group">
+                                     		                        <?php echo Form::textarea("description", null, ['class'=>'form-control', 'placeholder'=>'Write a good description about this picture.']); ?>
+
+
+                                     		                    </div>
+                                     		                    <div class="form-group">
+
+                                     		                        <?php echo Form::submit("Upload", ['class'=>'btn btn-success btn-lg']); ?>
+
+                                     		                    </div>
+
+
+                                     		                 <?php echo Form::close(); ?>
+
+
+                                     		            </div>
+                                     		        </div>
+                                     		    </div>
+                                     		</div>
+
+                                     		<!-- Modal Ends -->
+			        </div>
+                <?php endif; ?>
+                    <?php foreach($images as $image): ?>
+			        <div class="form-group" style="border: 1px solid blue; padding: 10px;">
+
+
+                            <p><?php echo e($image->description); ?></p>
+                            <br>
+                            <?php echo Html::image($image->url, $image->name, ['class'=>'img img-responsive img-rectangle']); ?>
+
+                            <br>
+                            <div class="review-section" id="reviews">
+                                <a href="#" class="btn btn-default" id="reviewBtn">Reviews
+                                    <span class="glyphicon glyphicon-list"></span>
+                                </a>
+                                <div class="view-review jumbotron" id="view-review" style="display: none;">
+                                    <h2>Reviews</h2>
+                                    <?php foreach($reviews as $review): ?>
+
+                                        <?php if($review->imageID == $image->id): ?>
+                                            <li ><?php echo e($review->review); ?></li>
+                                        <?php endif; ?>
+
+                                    <?php endforeach; ?>
+
+                                </div>
+
+                                <div class="review-form">
+                                    <?php echo Form::open(["route"=>["addReview"], 'method'=>'put', 'id'=>'reviewForm']); ?>
+
+                                                            <input type="hidden" value="<?php echo e($image->id); ?>" name="imageID" id="imageID" />
+                                                            <textarea name="review" class="form-control" id="review" placeholder="Write Your review here..."></textarea>
+                                                            <?php echo Form::submit("Submit", ['class'=>'btn btn-primary']); ?>
+
+                                                        <?php echo Form::close(); ?>
+
+                                </div>
+
+                            </div>
+
+			        </div>
+			        <hr>
+			        <?php endforeach; ?>
+			    </div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('master', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

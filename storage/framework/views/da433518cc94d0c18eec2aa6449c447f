@@ -1,0 +1,65 @@
+<?php
+$panelHeading = "Photographer's Profile";
+?>
+
+
+<?php $__env->startSection('content'); ?>
+<div class="pull-right">
+    <?php if($flag): ?>
+            <a href="<?php echo e(route("signIn")); ?>" class="btn btn-danger">Login
+            <span class="glyphicon glyphicon-log-in"></span>
+            </a>
+            <br>
+            <a href="<?php echo e(route("signUp")); ?>" class="btn btn-primary">Sign Up</a>
+     <?php else: ?>
+            <a href="<?php echo e(route("signOut")); ?>" class="btn btn-danger">Logout
+            <span class="glyphicon glyphicon-log-out"></span>
+            </a>
+            <br>
+            <a href="<?php echo e(route("userHome")); ?>">Go to Home</a>
+    <?php endif; ?>
+        </div>
+<?php echo $__env->make('_panel-heading', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+
+<div class="row">
+    <div class="col-md-12">
+
+    <?php if($users !== null): ?>
+    <?php foreach($users as $user): ?>
+
+            <div class="form-group  col-sm-3">
+                <div class="image">
+                    <?php echo Html::image($user->url, $user->name, ['class'=>'img img-thumbnail']); ?>
+
+                </div>
+            </div>
+
+            <div class="form-group col-sm-9">
+                            <div class="user-info">
+                                <label><?php echo e($user->firstName); ?> <?php echo e($user->lastName); ?></label>
+                                <p><i><?php echo e($user->about); ?></i></p>
+                                <br>
+                                <label>Experience</label>
+                                <p><?php echo e($user->experience); ?></p>
+                                <br>
+                                <label>Mobile Number</label>
+                                <p><?php echo e($user->mobile); ?></p>
+                                <br>
+                                <label>Email Address</label>
+                                <p><?php echo e($user->email); ?></p>
+                                <br>
+                                <a href="<?php echo e(route("getUserProfile", [
+                                    'userID'=>$user->id
+                                ])); ?>" class="btn btn-success btn-lg">View Profile</a>
+                            </div>
+            </div>
+
+        <hr>
+    <?php endforeach; ?>
+    <?php endif; ?>
+    </div>
+</div>
+
+
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('master', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

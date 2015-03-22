@@ -1,0 +1,13 @@
+			<div class="left-panel">
+				<ul class="nav nav-pills nav-stacked">
+					<li class="<?php echo e(isset($setUserProfileActive) ? $setUserProfileActive : ''); ?>">
+					    <a href="<?php echo e(route('userProfile')); ?>">Profile</a>
+					</li>
+					<li class="<?php echo e(isset($setUserHomeActive) ? $setUserHomeActive : ''); ?>">
+					    <a href="<?php echo e(route("userHome")); ?>">Home </a>
+					</li>
+					<li>
+					    <a href="<?php echo e(route("signOut")); ?>">Logout</a>
+					</li>
+				</ul>
+			</div>

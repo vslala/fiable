@@ -1,0 +1,215 @@
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title><?php echo e(isset($title) ? $title : ''); ?></title>
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+
+        <!-- jQuery library -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+        <!-- Latest compiled JavaScript -->
+        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+        <?php echo Html::script('js/myjs.js'); ?>
+
+        <?php echo Html::script('js/jqueryCookie.js'); ?>
+
+
+        <!-- Bootstrap Validation Css File -->
+        <?php echo Html::style('https://cdnjs.cloudflare.com/ajax/libs/bootstrap-validator/0.4.5/css/bootstrapvalidator.css'); ?>
+
+
+        <?php echo Html::style('https://cdnjs.cloudflare.com/ajax/libs/bootstrap-validator/0.4.5/css/bootstrapvalidator.min.css'); ?>
+
+
+        <!-- Javascript files for Bootstrap Validation Plugin -->
+        <?php echo Html::script('http://cdn.jsdelivr.net/jquery.validation/1.13.1/jquery.validate.js'); ?>
+
+
+        <?php echo Html::script('http://cdn.jsdelivr.net/jquery.validation/1.13.1/jquery.validate.min.js'); ?>
+
+
+        <!-- Jquery Magnify -->
+        <?php echo Html::script("js/jquery.magnify.js"); ?>
+
+
+        <?php echo Html::style("css/magnify.css"); ?>
+
+
+        <!-- Jquery Slider -->
+        <link rel="stylesheet" type="text/css" href="http://cdn.jsdelivr.net/jquery.slick/1.4.1/slick.css"/>
+        <script src="http://cdn.jsdelivr.net/jquery.slick/1.4.1/slick.min.js"></script>
+        <style>
+                .h3{
+                font-family: tahoma, arial, helvetica, sans-serif ;
+
+                }
+                #cartItemImage{
+                height: 100px;
+
+                }
+                .logo{
+                height: 50px;
+                width: auto;
+                }
+                .nav-inverse-border{
+                border-radius: 5px;
+                }
+
+                #reviewBtn{
+                width: 100%;
+                }
+                .left-panel{
+
+                }
+                .left-nav{
+                text-align: right;
+                }
+                .image-row{
+                margin-bottom: 20px;
+                }
+                .nav-align-right{
+                text-align: right;
+                }
+                #modal-title{
+                font-size: large;
+                }
+                .navbar-right{
+                padding: 10px;
+                /*background-color: rgb(45,23,100);*/
+                border-radius: 20px;
+                }
+                .address{
+                margin: 0px;
+                padding: 20px;
+                background-color: #d0e9c6;
+
+                }
+                .home-image-tab{
+                /*border: 2px solid gray;*/
+                margin-bottom: 10px;
+                }
+                p{
+                margin: 0px;
+                padding: 0px;
+                font-family: "Tahoma", "sans-serif";
+                }
+                .tahoma{
+                font-family: "Tahoma", "sans-serif";
+                }
+                .breadcrumb{
+                margin: 0px;
+                padding: 0px;
+                }
+                .block{
+                display: block;
+                }
+                #btn-lg{
+                width: 600px;
+
+                }
+                #btn-lg-lg{
+                width: 800px;
+                }
+                .icon-rupee{
+                background-image: url("http://localhost:8000/public/img/home/rupee-symbol.png");
+                }
+                .panel-footer {
+                	padding: 1px 15px;
+                	color: #A0A0A0;
+                }
+                .image{
+                height: 200px;
+                width: 200px;
+                }
+                .view-review{
+                    border: 1px solid black;
+                }
+                .style-none{
+                font-style: none;
+                color: #000000;
+
+                }
+                #photographer{
+                                border: 1px solid gray;
+                                padding: 10px;
+                }
+                .profile-img {
+                	width: 96px;
+                	height: 96px;
+                	margin: 0 auto 10px;
+                	display: block;
+                	-moz-border-radius: 50%;
+                	-webkit-border-radius: 50%;
+                	border-radius: 50%;
+                }
+                #signUpPanel{
+                padding: 10px;
+                }
+
+    .top-row{
+    height: 55px;
+
+    }
+    .row-2{
+    margin-top: 5%;
+    }
+
+    
+
+    .home-image-tab{
+    height: 300;
+    width: 300;
+    text-align: center;
+    }
+    .order-summary{
+    border: 1px solid gray;
+    background-color: gainsboro;
+    }
+    .amountPayable{
+    margin-right: 100px;
+    background-color: #d0e9c6;
+    color: #080808;
+    padding: 50px;
+    border: 1px solid gray;
+    margin-top: -20px;
+    font-size: larger;
+    font-family: 'Trebuchet MS', 'Geneva CE', lucida, sans-serif;
+    }
+        </style>
+        <?php echo $__env->yieldContent('css'); ?>
+    </head>
+
+    <body>
+    <div class="container">
+            <div class="row top-row">
+                <div class="col-md-12">
+                    <nav class="navbar">
+                    <div class="navbar-header">
+
+                            <a href="<?php echo e(route('home')); ?>">
+                                <?php echo Html::image('img/home/company-logo.png', 'logo', ['class'=>'img img-responsive logo', 'id'=>'company-logo']); ?>
+
+                            </a>
+
+                    </div>
+                    <div class="navbar-right">
+                        <ul class="nav nav-pills">
+                            <li class="<?php echo e(isset($setHomeActive) ? $setHomeActive : ''); ?>"><a href="<?php echo e(route('home')); ?>"> Home </a></li>
+                            <li class="<?php echo e(isset($setBlogActive) ? $setBlogActive : ''); ?>"><a href="<?php echo e(route('blog')); ?>"> Blog </a></li>
+                            <li class="<?php echo e(isset($setAboutActive) ? $setAboutActive : ''); ?>"><a href="<?php echo e(route('about')); ?>"> About </a></li>
+                            <li class="<?php echo e(isset($setContactActive) ? $setContactActive : ''); ?>"><a href="<?php echo e(route('contact')); ?>"> Contact </a></li>
+                        </ul>
+                    </div>
+                    </nav>
+                </div>
+
+            </div>
+            <?php /*<div class="clear-fix"></div>*/ ?>
+
+        <?php echo $__env->yieldContent('content'); ?>
+        </div>
+        <?php echo $__env->yieldContent('js'); ?>
+    </body>
+</html>

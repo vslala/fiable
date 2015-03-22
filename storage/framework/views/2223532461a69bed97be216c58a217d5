@@ -1,0 +1,105 @@
+<?php $title = "Fiable Product";
+
+ ?>
+
+
+<?php $__env->startSection('content'); ?>
+
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h3>Product Details</h3>
+    </div>
+    <div class="panel-body">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-4">
+
+                    <div class="slider">
+                        <?php foreach($images as $image): ?>
+
+                                                    <a href="http://localhost:8000/<?php echo e($image->url); ?>">
+                                                        <?php echo Html::image($image->url, $image->name, ['class'=>'img img-thumbnail']); ?>
+
+                                                    </a>
+
+                                                <?php endforeach; ?>
+                    </div>
+
+                </div>
+
+
+                <div class="col-md-6">
+                    <ul class="nav nav-stacked">
+                        <li>Name: <strong><?php echo e($name); ?></strong>  </li>
+                        <li>Brand: <strong><?php echo e($brand); ?></strong></li>
+                        <li>Size: <strong><?php echo e($size); ?></strong></li>
+                        <li>Type: <strong><?php echo e($type); ?></strong> </li>
+                        <li>Design: <strong><?php echo e($design); ?></strong> </li>
+                        <li>Price: <strong><?php echo e($price); ?></strong><?php echo Html::image("img/home/rupee-symbol.png"); ?> </li>
+                    </ul>
+
+                    <br>
+                    <!-- ADD TO CART -->
+
+
+                        <a href="<?php echo e(route('cartAdd',[
+                                        $pid,
+                                        $name,
+                                        $brand,
+                                        $size,
+                                        $price,
+                                        $type,
+                                        $design,
+                                        $imageName
+                        ])); ?>" class="btn btn-lg btn-primary" id="cartAdd">
+                                       Add to cart
+                        </a>
+
+                    <!-- BUY  -->
+
+                        <a href="<?php echo e(route('buy',[
+                                        $pid,
+                                        $name,
+                                        $brand,
+                                        $size,
+                                        $price,
+                                        $type,
+                                        $design,
+                                        $imageName
+                        ])); ?>" class="btn btn-lg btn-success" id="cartShow">
+                                       Buy Now
+                        </a>
+
+
+
+                    <br>
+                    <div class="jumbotron">
+                    <div class="h3">Description</div>
+                        <p><?php echo e($description[0]['description']); ?></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<?php $__env->stopSection(); ?>
+
+
+<?php $__env->startSection('js'); ?>
+
+
+<script>
+$(document).ready(function($){
+    $(".slider").slick();
+});
+
+    $("img").magnify();
+
+
+
+</script>
+
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('master', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

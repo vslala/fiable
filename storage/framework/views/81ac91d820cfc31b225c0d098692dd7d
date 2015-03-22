@@ -1,0 +1,35 @@
+    <div class="col-md-3">
+    <a href="#"  id="nav-btn"><span class="glyphicon glyphicon-list"></span></a>
+
+            <div class="panel panel-primary" id="nav-panel">
+                <div class="panel-body">
+                <ul class="nav nav-pills nav-stacked left-nav">
+                    <li class="<?php echo e(isset($setHandmadeActive) ? $setHandmadeActive : ''); ?>">
+                    <a href="<?php echo e(route('handmadeItems')); ?>">Handmade Items
+                    <span class="glyphicon glyphicon-gift"></span>
+                    </a>
+                    </li>
+
+                    <li class="<?php echo e(isset($setPcActive) ? $setPcActive : ''); ?>">
+                    <a href="<?php echo e(route('pcservice')); ?>">
+                    Computer Services <span class="glyphicon glyphicon-briefcase"></span>
+                    </a>
+                    </li>
+
+                    <li class="<?php echo e(isset($setElectricalActive) ? $setElectricalActive : ''); ?>">
+                    <a href="<?php echo e(route('electrical')); ?>"> Electricals & Electronics
+                    <span class="glyphicon glyphicon-lamp"></span>
+                    </a>
+                    </li>
+
+                    <li class="<?php echo e(isset($setPhotographyActive) ? $setPhotographyActive : ''); ?>">
+                    <a href="<?php echo e(route('photography')); ?>"> Photography
+                    <span class="glyphicon glyphicon-camera"></span>
+                    </a>
+                    </li>
+
+                </ul>
+                            </div>
+
+                        </div>
+         </div>

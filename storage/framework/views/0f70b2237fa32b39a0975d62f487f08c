@@ -1,0 +1,24 @@
+    <div class="row">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+            <?php if(isset($count)): ?>
+            <a href="<?php echo e(route('cartShow')); ?>">
+                <div class="cart h3 pull-right">
+                <button class="btn btn-primary">
+                    <span class="badge badge-primary">
+                        <span id="badge"><?php echo e($count); ?></span><span class="glyphicon glyphicon-shopping-cart"></span>
+                                        </span>
+                </button>
+
+                </div>
+            </a>
+            <?php endif; ?>
+                <div class="h3">
+                    <?php echo e(isset($panelHeading) ? $panelHeading : ''); ?>
+
+                </div>
+
+
+            </div>
+        </div>
+    </div>

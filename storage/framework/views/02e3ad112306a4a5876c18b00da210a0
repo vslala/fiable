@@ -1,0 +1,72 @@
+<?php $__env->startSection('css'); ?>
+
+<style>
+    .img-medium{
+    height: 10em;
+    }
+</style>
+
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('content'); ?>
+
+<div class="row">
+    <div class="col-md-1"></div>
+    <div class="col-md-10">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <div class="h2">Blogs</div>
+        </div>
+        <div class="panel-body">
+        <?php echo Html::link(route('adminCreate'), 'Compose', ['class'=>'btn btn-success']); ?>
+
+        <br/>
+        <hr>
+
+            <?php foreach($blogs as $blog): ?>
+
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-4">
+                        <?php echo Html::image($blog->image, 'dp', ['class'=>'img img-responsive img-thumbnail']); ?>
+
+                    </div>
+                    <div class="col-md-6">
+                        <div class="h3"><span class="glyphicon glyphicon-user"></span><b><?php echo e($blog->username); ?></b></div>
+                        <div class="help-block">
+                            <div class="h6">created at: <?php echo e($blog->created_at); ?></div>
+                            <br />
+                        </div>
+                        <div class="h4"><?php echo e($blog->heading); ?></div>
+                        <br />
+                        <p><?php echo e($blog->content); ?></p>
+                        <div class="form-group">
+                            <?php echo Html::link(route('adminEdit', $blog->id), 'Edit', ['class'=>'btn btn-primary']); ?>
+
+
+                            <?php echo Html::link(route('adminDelete', $blog->id), 'Delete', ['class'=>'btn btn-danger']); ?>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr>
+
+
+            <?php endforeach; ?>
+        </div>
+    </div>
+        <?php echo Form::model($blog, [route('adminBlog'), 'method'=>'put', 'class'=>'form-horizontal']); ?>
+
+
+        <?php echo Form::close(); ?>
+
+    </div>
+    <div class="col-md-1">
+
+    </div>
+</div>
+
+
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('admin_master', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

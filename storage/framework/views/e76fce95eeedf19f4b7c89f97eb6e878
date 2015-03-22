@@ -1,0 +1,48 @@
+<?php $__env->startSection('content'); ?>
+
+<div class="row">
+    <div class='panel panel-default'>
+        <div class="panel-heading">
+            <div class="h3">Customer's Pending Queries</div>
+        </div>
+        <div class="panel-body">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <?php foreach($q as $query): ?>
+                            <table class="table table-responsive table-bordered bg-info">
+                                <thead>
+                                <label class="label label-primary"><span class="glyphicon glyphicon-user"></span></label>
+                                <th><?php echo e($query->firstName); ?> <?php echo e($query->lastName); ?></th>
+                                <th><div class="help-block">created at: <?php echo e($query->created_at); ?></div></th>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th>Subject: </th>
+                                        <td><?php echo e($query->subject); ?></td>
+                                    </tr>
+                                    <tr>
+                                        <th>Message: </th>
+                                        <td><?php echo e($query->message); ?></td>
+                                    </tr>
+                                    <tr>
+                                        <th> </th>
+                                        <td><a href="<?php echo e(route('adminReply', $query->id)); ?>" class="btn btn-success">Reply</a></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            
+                            <?php endforeach; ?>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<?php $__env->stopSection(); ?>
+
+
+<?php echo $__env->make('admin_master', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

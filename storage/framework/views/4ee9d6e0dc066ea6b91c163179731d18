@@ -1,0 +1,53 @@
+<?php $panelHeading = "Checkout"; ?>
+
+
+<?php $__env->startSection('content'); ?>
+
+<?php echo $__env->make('_panel-heading', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+
+<div class="row">
+    <div class="col-md-8">
+
+        <button class="btn btn-danger btn-lg" id="addressFormToggle">New Address</button>
+
+        <div class="collapse" id="addressForm">
+            <?php echo $__env->make("_addressForm", array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+        </div>
+        <br>
+
+        <?php if(isset($addresses)): ?>
+            <?php foreach($addresses as $user): ?>
+
+                <div class="address col-md-4">
+                    <?php echo e($user->address_one); ?> <br>
+                    <?php echo e(isset($user->address_two) ? $user->address_two : ''); ?> <br>
+                    <?php echo e($user->landmark); ?> <br>
+                    <?php echo e($user->mobile); ?>
+
+                    <a href="<?php echo e(route("summaryAddress", ["addressID"=>$user->id, "totalAmount"=>$totalAmount])); ?>" class="btn btn-primary" >
+                    Use this Address
+                    </a>
+                </div>
+
+            <?php endforeach; ?>
+        <?php else: ?>
+            <?php echo $__env->make("_addressForm", array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+        <?php endif; ?>
+    </div>
+
+    <div class="col-md-4">
+
+
+<div class="order-summary">
+            <div class="jumbotron">
+                <div class="h2">
+                    Only Cash On Delivery Available For Now :)
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('master', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

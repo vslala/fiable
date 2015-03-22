@@ -1,0 +1,55 @@
+<?php
+$title = "Handmade Items";
+$setHandmadeActive = "active";
+$breadcrumbs = [
+    ['link'=>"Home"],
+    ['link'=>"Handmade Items", "class"=>"label-primary"]
+];
+?>
+
+
+<?php $__env->startSection('content'); ?>
+<?php $panelHeading = "Handmade Items"; ?>
+<?php echo $__env->make('_panel-heading', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+
+<?php echo $__env->make('category._breadcrumb', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+
+<div class="row">
+    <div class="panel panel-default">
+        <div class="panel-body">
+
+            <?php echo $__env->make('_left-nav', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+
+            <div class="col-md-9">
+                <div class="form-group" style="border-left: 1px solid gray;">
+                <?php foreach($categories as $category): ?>
+                    <div class="col-sm-3 image-row">
+
+                        <div class="home-image-tab">
+
+                            <a href="#">
+
+                             <?php echo Html::image($category->url, $category->name,[
+                             'class'=>'img img-thumbnail'
+                             ]); ?>
+
+
+                             </a>
+                            <?php echo Html::link(route($category->name), $category->name, ['class'=>'btn btn-danger btn-lg']); ?>
+
+
+                        </div>
+
+                    </div>
+                <?php endforeach; ?>
+                </div>
+            </div>
+
+            <div class="col-md-1"></div>
+        </div>
+    </div>
+</div>
+
+
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('master', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

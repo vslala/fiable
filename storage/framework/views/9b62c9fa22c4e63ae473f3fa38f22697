@@ -1,0 +1,7 @@
+
+
+    <ol class="breadcrumb">
+    <?php foreach($breadcrumbs as $breadcrumb): ?>
+        <li><label class="label <?php echo e(isset($breadcrumb['class']) ? $breadcrumb['class'] : "label-default"); ?>"><?php echo e($breadcrumb['link']); ?></label> </li>
+    <?php endforeach; ?>
+    </ol>

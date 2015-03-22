@@ -1,0 +1,104 @@
+<?php $setHomeActive = "active" ?>
+<?php $setHandmadeActive = "active" ?>
+<?php $setElectricalActive = "active" ?>
+<?php $setPhotographyActive = "active" ?>
+<?php $setPcActive = "active" ?>
+
+
+<?php $__env->startSection('css'); ?>
+<style>
+
+
+</style>
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('content'); ?>
+
+        <?php $panelHeading = "Categories" ?>
+        <?php echo $__env->make('_panel-heading', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+
+        <div class="row">
+        <div class="panel panel-default">
+
+            <div class="panel-body">
+
+            <?php echo $__env->make('_left-nav', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+
+            <div class="col-md-9">
+                <div class="form-group">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="home-image-tab">
+                                <a href="<?php echo e(route('handmadeItems')); ?>">
+                                     <?php echo Html::image('img/home/handmade.png', 'handmade items',[
+                                          'class'=>'img img-responsive img-rectangle img-thumbnail'
+                                     ]); ?>
+
+                                </a>
+                                <p></p>
+                                     <?php echo Html::link(route('handmadeItems'), 'Handmade Items', ['class'=>'btn btn-success',
+                                     'id'=>'btn-lg'
+                                     ]); ?>
+
+                            </div>
+                        </div>
+
+
+                    <div class="row">
+                        <div class="home-image-tab">
+                            <a href="<?php echo e(route('photography')); ?>">
+                             <?php echo Html::image('img/home/photography-logo.png', 'photography',[
+                             'class'=>'img img-responsive img-rectangle img-thumbnail'
+                             ]); ?>
+
+                             </a>
+                             <p></p>
+                            <?php echo Html::link(route('photography'), 'Photography', ['class'=>'btn btn-success', 'id'=>'btn-lg']); ?>
+
+
+
+                        </div>
+
+                    </div>
+
+                    <div class="row">
+                        <div class="home-image-tab">
+                            <a href="<?php echo e(route('electrical')); ?>">
+                             <?php echo Html::image('img/home/electrical-logo.png', 'electrical',[
+                             'class'=>'img img-responsive img-rectangle img-thumbnail'
+                             ]); ?>
+
+                             </a>
+                             <p></p>
+                            <?php echo Html::link(route('electrical'), 'Electrical', ['class'=>'btn btn-success', 'id'=>'btn-lg']); ?>
+
+                        </div>
+
+                    </div>
+
+                    <div class="row">
+                        <div class="home-image-tab">
+
+                            <a href="<?php echo e(route('pcservice')); ?>">
+                             <?php echo Html::image('img/home/PC_home.jpg', 'pc services',[
+                             'class'=>'img img-responsive img-rectangle img-thumbnail'
+                             ]); ?>
+
+                             </a>
+                             <p></p>
+                            <?php echo Html::link(route('pcservice'), 'Computer Services', ['class'=>'btn btn-success', 'id'=>'btn-lg']); ?>
+
+                        </div>
+
+                    </div>
+                    </div>
+
+                </div>
+            </div>
+            </div>
+        </div>
+        </div>
+
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('master', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

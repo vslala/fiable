@@ -1,0 +1,65 @@
+<?php $setBlogActive = "active" ?>
+
+
+<?php $__env->startSection('css'); ?>
+
+<style>
+    .img-medium{
+    height: 10em;
+    }
+</style>
+
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('content'); ?>
+
+<div class="row">
+    <div class="col-md-1"></div>
+    <div class="col-md-10">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <div class="h2">Blogs</div>
+        </div>
+        <div class="panel-body">
+
+        <ol class="breadcrumb">
+            <li><a href="<?php echo e(route('home')); ?>"><label class="label label-default">Home</label> </a> </li>
+            <li class="active"><a href="<?php echo e(route('blog')); ?>"><label class="label label-primary">Blog</label></a> </li>
+
+        </ol>
+        </div>
+        <hr>
+
+            <?php foreach($blogs as $blog): ?>
+
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-4">
+                        <?php echo Html::image($blog->image, 'dp', ['class'=>'img img-responsive img-thumbnail']); ?>
+
+                    </div>
+                    <div class="col-md-6">
+                        <div class="h3"><span class="glyphicon glyphicon-user"></span><b><?php echo e($blog->username); ?></b></div>
+                        <div class="help-block">
+                            <div class="h6">created at: <?php echo e($blog->created_at); ?></div>
+                            <br />
+                        </div>
+                        <div class="h4"><?php echo e($blog->heading); ?></div>
+                        <br />
+                        <p><?php echo e($blog->content); ?></p>
+                        
+                    </div>
+                </div>
+            </div>
+            <hr>
+
+
+            <?php endforeach; ?>
+        </div>
+    <div class="col-md-1">
+
+    </div>
+</div>
+
+
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('master', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

@@ -1,0 +1,61 @@
+<?php $__env->startSection('content'); ?>
+
+<div class="row">
+    <div class="col-md-1"></div>
+    <div class="col-md-10">
+        <table class="table table-bordered">
+            <thead>
+                <th>Product ID</th>
+                <th>Product Name</th>
+                <th>Product Brand</th>
+            </thead>
+
+            <tbody>
+                <?php foreach($products as $product): ?>
+
+                <tr>
+                    <td><?php echo e($product->id); ?></td>
+                    <td><?php echo e($product->name); ?></td>
+                    <td><?php echo e($product->brand); ?></td>
+                </tr>
+
+
+                <?php endforeach; ?>
+            </tbody>
+        </table>
+
+        <div class="jumbotron">
+        <?php if(isset($message)): ?>
+
+        <div class="alert-block">
+            <div class="alert-success">
+                <?php echo e(isset($message) ? $message : ''); ?>
+
+            </div>
+        </div>
+
+        <?php endif; ?>
+
+        <?php echo Form::open(['route'=>['adminAddImage'], 'method'=>'put', 'files'=>true, 'class'=>'form-vertical']); ?>
+
+        <div class="form-group">
+            <?php echo Form::label('Product ID', null, ['class'=>'form-label']); ?>
+
+            <?php echo Form::text('pid',null,['class'=>'form-control', 'placeholder'=>'Product ID here']); ?>
+
+        </div>
+        <div class="form-group">
+            <?php echo Form::file('files[]', ['multiple'=>true,'class'=>'form-control']); ?>
+
+        </div>
+
+            <?php echo Form::submit('Upload',['class'=>'btn btn-success']); ?>
+
+        <?php echo Form::close(); ?>
+
+        </div>
+    </div>
+</div>
+
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('admin_master', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
